@@ -11,12 +11,17 @@ public class NReinas {
         tampob = 8;
         reinas = 8;
         
+        int [] fitness = new int [tampob];
+        for (int i = 0; i < tampob; i++) {
+            fitness[i] = 0;
+        }
+        // ASIGNAR POBLACION
         int [][] poblacion = new int [tampob][reinas];
         ArrayList<Integer> aux = new ArrayList<>();
         
         for (int i = 0; i < tampob; i++) {
-            for (int j = 1; j < reinas+1; j++) {
-                poblacion[i][j-1] = j;
+            for (int j = 0; j < reinas; j++) {
+                poblacion[i][j] = j;
             }            
         }
         Random r = new Random();
@@ -34,6 +39,22 @@ public class NReinas {
                 System.out.print(poblacion[i][j]+" ");
             }
             System.out.println("");
+        }
+        
+        //CALCULAR FITNESS
+        
+        for (int i = 0; i < tampob; i++) {
+            // i itera entre poblaciones
+            for (int k = 0; k <= reinas; k++) {
+                // k itera el indice 
+                for (int j = 0; j <= reinas -1; j++) {
+                    //k itera el hacia la derecha del tablero
+                    
+                    
+                }
+                
+            }
+            
         }
     }
     
