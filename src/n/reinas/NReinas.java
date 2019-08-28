@@ -8,22 +8,23 @@ public class NReinas {
     public static void main(String[] args) {
         
         int tampob, reinas;
-        tampob = 8;
+        tampob = 10;
         reinas = 8;
         
-        int [] fitness = new int [tampob];
-        for (int i = 0; i < tampob; i++) {
-            fitness[i] = 0;
-        }
         // ASIGNAR POBLACION
-        int [][] poblacion = new int [tampob][reinas];
-        ArrayList<Integer> aux = new ArrayList<>();
-        
+        int [][] poblacion = new int [tampob][reinas];    
         for (int i = 0; i < tampob; i++) {
             for (int j = 0; j < reinas; j++) {
                 poblacion[i][j] = j;
             }            
         }
+        
+        // INICIALIZAR FITNESS
+        int [] fitness = new int [tampob];
+        for (int i = 0; i < tampob; i++) {
+            fitness[i] = 0;
+        }
+        
         Random r = new Random();
         for (int i = 0; i < tampob; i++) {
             for (int j=0; j<reinas; j++) {
@@ -42,19 +43,22 @@ public class NReinas {
         }
         
         //CALCULAR FITNESS
-        
-        for (int i = 0; i < tampob; i++) {
-            // i itera entre poblaciones
-            for (int k = 0; k <= reinas; k++) {
-                // k itera el indice 
-                for (int j = 0; j <= reinas -1; j++) {
-                    //k itera el hacia la derecha del tablero
-                    
-                    
+        for (int k = 0; k < tampob; k++) {
+            // k itera entre poblaciones
+            for (int i = 0; i < reinas-1; i++) {
+                // i itera el indice 
+                for (int j = i+1; j < reinas; j++) {
+                    //j itera el hacia la derecha del tablero
+                    if(Math.abs(j-i) == Math.abs(poblacion[k][j]-poblacion[k][i]))
+                        fitness[k]++;
                 }
                 
             }
             
+        }
+        //IMPRIME EL FITNESS
+        for (int i = 0; i < tampob; i++) {
+            System.out.println(fitness[i]);
         }
     }
     
