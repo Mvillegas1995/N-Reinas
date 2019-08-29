@@ -10,11 +10,11 @@ public class NReinas {
         GeneticAlg x = new GeneticAlg(tampob, reinas);
         
         x.desordenarTablero();
-        x.imprimirPoblacion();
-        
+        x.imprimirPoblacion();        
         x.calcularFitness();
         x.imprimirFitness();
-
+        if(x.resuelto())System.out.println("termine");
+        else x.generarRuleta();
     }
     
 }
