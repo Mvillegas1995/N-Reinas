@@ -45,8 +45,8 @@ public class GeneticAlg {
       
     }
     
-    public void desordenarTablero(){    
-        Random r = new Random();
+    public void desordenarTablero(int semilla){    
+        Random r = new Random(semilla);
         for (int i = 0; i < tampob; i++) {
             for (int j=0; j<reinas; j++) {
                 int posAleatoria = r.nextInt(reinas);
@@ -133,15 +133,35 @@ public class GeneticAlg {
             ruleta[i] = ruleta[i-1] + proporcion[i];
         }
         //imprimir ruleta solo para verificación
-        for (int i = 0; i < tampob; i++) {
-            System.out.print(ruleta[i]+" ");
-        }
+        //for (int i = 0; i < tampob; i++) {
+        //    System.out.print(ruleta[i]+" ");
+        //}
     }
     
-    public void escogerTableroCruza(){
-    
+    public int escogerTableroCruza(){
         
-    
+        //Definimos un numero random 0 <= Aleatorio <= 1 para seleccionar mediante ruleta a un tablero
+        Random r = new Random();
+        int pos = 0;
+        float AleatorioUno = r.nextFloat();
+                                                                                                                            
+        //Imprimir ruleta solo para verificación
+        //for (int i = 0; i < tampob; i++) {
+        //    System.out.print(ruleta[i]+" ");
+        //}    
+        
+        for (int i = 0; i < tampob; i++) {
+            if(i == 0 && AleatorioUno > 0 && AleatorioUno < ruleta[i]){
+                //System.out.println("Aleatorio uno esta en: "+i);
+                pos = i;
+            }
+            if(i != 0 && AleatorioUno > ruleta[i-1] && ruleta[i] > AleatorioUno){
+                //System.out.println("Aleatorio uno esta en: "+i);
+                pos = i;
+            }
+        }
+        
+        return pos;
     }
     
     public boolean resuelto(){
