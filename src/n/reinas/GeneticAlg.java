@@ -4,14 +4,14 @@ package n.reinas;
 import java.util.Random;
 
 public class GeneticAlg {
-    
+
     // Tamaño de la poblacion
     private final int tampob;
     // Cantidad de reinas
     private final int reinas;
     // Matriz usada para almacenar las poblaciones, cada fila es una poblacion
     private int [][] poblacion;
-    
+
     private int [] fitness;
     //Con el fin de hacer un poco de elitismo
     private int mejorFitness;
@@ -20,33 +20,39 @@ public class GeneticAlg {
     // Para comprobar si encuentro un tablero con la solución
     private boolean resuelto;
     private float[] ruleta;
-    
-    public GeneticAlg(int tampob, int reinas){      
-        
+
+    public GeneticAlg(int tampob, int reinas){
+
         this.tampob = tampob;
         this.reinas = reinas;
         peorFitness = 0;
         mejorFitness = 0;
         resuelto = false;
-        
+
         poblacion = new int [tampob][reinas];
         for (int i = 0; i < tampob; i++) {
             for (int j = 0; j < reinas; j++) {
                 poblacion[i][j] = j;
-            }            
+            }
         }
-        
+
         fitness = new int [tampob];
         for (int i = 0; i < tampob; i++) {
             fitness[i] = 0;
         }
-        
         ruleta = new float [tampob];
-      
     }
-    
-    public void desordenarTablero(int semilla){    
-        Random r = new Random(semilla);
+
+    public GeneticAlg(int tampob, int reinas, int[][] Descendencia){
+        this.tampob = tampob;
+        this.reinas = reinas;
+        peorFitness = 0;
+        mejorFitness = 0;
+        resuelto = false;
+        this.poblacion = Descendencia;
+    }
+
+    public void desordenarTablero(Random r){
         for (int i = 0; i < tampob; i++) {
             for (int j=0; j<reinas; j++) {
                 int posAleatoria = r.nextInt(reinas);
@@ -55,28 +61,28 @@ public class GeneticAlg {
                 poblacion[i][posAleatoria] = temp;
             }
         }
-        
+
     }
-    
-    public void imprimirPoblacion(){   
+
+    public void imprimirPoblacion(){
         for (int i = 0; i < tampob; i++) {
             for (int j = 0; j < reinas; j++) {
                 System.out.print(poblacion[i][j]+" ");
             }
             System.out.println("");
-        }  
+        }
     }
-    
+
     public void calcularFitness(){
         for (int k = 0; k < tampob; k++) {
             // k itera entre poblaciones
             for (int i = 0; i < reinas-1; i++) {
-                // i itera el indice 
+                // i itera el indice
                 for (int j = i+1; j < reinas; j++) {
                     //j itera el hacia la derecha del tablero
                     if(Math.abs(j-i) == Math.abs(poblacion[k][j]-poblacion[k][i]))
-                        fitness[k]++;                    
-                }         
+                        fitness[k]++;
+                }
             }
             // Guardo las posiciones de los tableros con peor y mejor fitness
             if(fitness[k] > fitness[peorFitness])
@@ -87,7 +93,7 @@ public class GeneticAlg {
         //Comprobar si encontre la solución
         for (int i = 0; i < tampob; i++) {
             if (fitness[i] == 0) {
-               resuelto = true; 
+               resuelto = true;
             }
         }
         //imprimirFitness();
@@ -101,7 +107,7 @@ public class GeneticAlg {
             }
         }
     }
-     
+
     public void imprimirFitness(){
         System.out.println("");
         for (int i = 0; i < tampob; i++) {
@@ -112,9 +118,9 @@ public class GeneticAlg {
         System.out.println("Tablero con mejor fitness: "+mejorFitness);
         System.out.println("Tablero con peor fitness: "+peorFitness);
     }
-    
+
     public void generarRuleta(){
-        
+
         int total = 0;
         for (int i = 0; i < tampob; i++) {
             total += fitness[i];
@@ -123,7 +129,7 @@ public class GeneticAlg {
         float [] proporcion = new float [tampob];
         for (int i = 0; i < tampob; i++) {
             proporcion[i] = (float)fitness[i]/total;
-            
+
             if(proporcion[i] == 0)
                 proporcion[i] = (float)0.000001;
         }
@@ -137,19 +143,19 @@ public class GeneticAlg {
         //    System.out.print(ruleta[i]+" ");
         //}
     }
-    
+
     public int escogerTableroCruza(){
-        
+
         //Definimos un numero random 0 <= Aleatorio <= 1 para seleccionar mediante ruleta a un tablero
         Random r = new Random();
         int pos = 0;
         float AleatorioUno = r.nextFloat();
-        System.out.println("AleatorioUno: "+ AleatorioUno);                                                                                                   
+        System.out.println("AleatorioUno: "+ AleatorioUno);
         //Imprimir ruleta solo para verificación
         for (int i = 0; i < tampob; i++) {
             System.out.print(ruleta[i]+" ");
-        }    
-        
+        }
+
         for (int i = 0; i < tampob; i++) {
             if(i == 0 && AleatorioUno > 0 && AleatorioUno < ruleta[i]){
                 System.out.println("Aleatorio uno esta en: "+i);
@@ -160,11 +166,21 @@ public class GeneticAlg {
                 pos = i;
             }
         }
-        
         return pos;
     }
-    
+        
+    public void cruza(){
+        int a1,a2;
+        int[][]Descendencia = new int [tampob][reinas];
+
+    }
+
     public boolean resuelto(){
         return resuelto;
+    }
+
+    public float random0y1(Random r){
+        float random = r.nextFloat();
+        return random;
     }
 }
