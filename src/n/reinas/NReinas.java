@@ -8,7 +8,7 @@ public class NReinas {
 
         int tampob = 10;
         int reinas = 8;
-        int semilla = 2;
+        int semilla = 1;
         Random r = new Random(semilla);
 
         GeneticAlg x = new GeneticAlg(tampob, reinas);

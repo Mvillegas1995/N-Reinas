@@ -160,7 +160,7 @@ public class GeneticAlg {
                 System.out.println("Aleatorio uno esta en: "+i);
                 pos = i;
             }
-            else if(AleatorioUno > 0 && AleatorioUno < ruleta[i]){
+            else if(i==0 && AleatorioUno > 0 && AleatorioUno < ruleta[i]){
                 System.out.println("Aleatorio uno esta en: "+i);
                 pos = i;            
             }
@@ -168,18 +168,23 @@ public class GeneticAlg {
         return pos;
     }
         
-    public void cruza(){
-        int a1,a2;
+    public void cruza(Random r){
         int[][]Descendencia = new int [tampob][reinas];
-
+        int puntoCruza = r.nextInt(reinas-1);
+        int posTab1 = escogerTableroCruza(r);
+        int posTab2 = escogerTableroCruza(r);
+        //Para evitar reproducción entre el mismo individuo
+        while(posTab1 == posTab2){
+            posTab2 = escogerTableroCruza(r);
+        }
+        int[] tablero1 = poblacion[posTab1];
+        int[] tablero2 = poblacion[posTab2];
+        //formula punto de cruza
+        
     }
 
     public boolean resuelto(){
         return resuelto;
     }
 
-    public float random0y1(Random r){
-        float random = r.nextFloat();
-        return random;
-    }
 }
