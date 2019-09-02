@@ -135,7 +135,7 @@ public class GeneticAlg {
     }
     
     public void escogerTableroCruza(){
-    
+        
     }
     
     public boolean resuelto(){
