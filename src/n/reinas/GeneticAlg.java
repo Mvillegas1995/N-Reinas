@@ -144,19 +144,19 @@ public class GeneticAlg {
         Random r = new Random();
         int pos = 0;
         float AleatorioUno = r.nextFloat();
-                                                                                                                            
+        System.out.println("AleatorioUno: "+ AleatorioUno);                                                                                                   
         //Imprimir ruleta solo para verificación
-        //for (int i = 0; i < tampob; i++) {
-        //    System.out.print(ruleta[i]+" ");
-        //}    
+        for (int i = 0; i < tampob; i++) {
+            System.out.print(ruleta[i]+" ");
+        }    
         
         for (int i = 0; i < tampob; i++) {
             if(i == 0 && AleatorioUno > 0 && AleatorioUno < ruleta[i]){
-                //System.out.println("Aleatorio uno esta en: "+i);
+                System.out.println("Aleatorio uno esta en: "+i);
                 pos = i;
             }
             if(i != 0 && AleatorioUno > ruleta[i-1] && ruleta[i] > AleatorioUno){
-                //System.out.println("Aleatorio uno esta en: "+i);
+                System.out.println("Aleatorio uno esta en: "+i);
                 pos = i;
             }
         }
