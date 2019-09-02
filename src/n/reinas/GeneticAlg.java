@@ -5,9 +5,13 @@ import java.util.Random;
 
 public class GeneticAlg {
     
+    // Tamaño de la poblacion
     private final int tampob;
+    // Cantidad de reinas
     private final int reinas;
+    // Matriz usada para almacenar las poblaciones, cada fila es una poblacion
     private int [][] poblacion;
+    
     private int [] fitness;
     //Con el fin de hacer un poco de elitismo
     private int mejorFitness;
@@ -135,6 +139,8 @@ public class GeneticAlg {
     }
     
     public void escogerTableroCruza(){
+    
+        
     
     }
     
