@@ -23,11 +23,7 @@ public class NReinas {
         else x.generarRuleta();
 
         System.out.println("");
-        System.out.println("El tablero escogido para la cruza es: "+x.escogerTableroCruza());
-        System.out.println(x.random0y1(r));
-        System.out.println(x.random0y1(r));
-        System.out.println(x.random0y1(r));
-        System.out.println(x.random0y1(r));
+        System.out.println("El tablero escogido para la cruza es: "+x.escogerTableroCruza(r));
 
     }
 

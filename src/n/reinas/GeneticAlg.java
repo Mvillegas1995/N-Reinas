@@ -144,10 +144,9 @@ public class GeneticAlg {
         //}
     }
 
-    public int escogerTableroCruza(){
+    public int escogerTableroCruza(Random r){
 
         //Definimos un numero random 0 <= Aleatorio <= 1 para seleccionar mediante ruleta a un tablero
-        Random r = new Random();
         int pos = 0;
         float AleatorioUno = r.nextFloat();
         System.out.println("AleatorioUno: "+ AleatorioUno);
@@ -157,13 +156,13 @@ public class GeneticAlg {
         }
 
         for (int i = 0; i < tampob; i++) {
-            if(i == 0 && AleatorioUno > 0 && AleatorioUno < ruleta[i]){
-                System.out.println("Aleatorio uno esta en: "+i);
-                pos = i;
-            }
             if(i != 0 && AleatorioUno > ruleta[i-1] && ruleta[i] > AleatorioUno){
                 System.out.println("Aleatorio uno esta en: "+i);
                 pos = i;
+            }
+            else if(AleatorioUno > 0 && AleatorioUno < ruleta[i]){
+                System.out.println("Aleatorio uno esta en: "+i);
+                pos = i;            
             }
         }
         return pos;
