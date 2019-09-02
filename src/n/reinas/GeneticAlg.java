@@ -35,14 +35,20 @@ public class GeneticAlg {
         fitness = new int [tampob];
         for (int i = 0; i < tampob; i++) {
             fitness[i] = 0;
-        }
-        
-        ruleta = new float [tampob];
-      
+        }       
+        ruleta = new float [tampob];    
     }
     
-    public void desordenarTablero(){    
-        Random r = new Random();
+    public GeneticAlg(int tampob, int reinas, int[][] Descendencia){
+        this.tampob = tampob;
+        this.reinas = reinas;
+        peorFitness = 0;
+        mejorFitness = 0;
+        resuelto = false;
+        this.poblacion = Descendencia;
+    }
+    
+    public void desordenarTablero(Random r){    
         for (int i = 0; i < tampob; i++) {
             for (int j=0; j<reinas; j++) {
                 int posAleatoria = r.nextInt(reinas);
@@ -134,11 +140,23 @@ public class GeneticAlg {
         }
     }
     
-    public void escogerTableroCruza(){
+    public void escogerTableroCruza(float probCruza){
+
+        
+    }
+    
+    public void cruza(){
+        int a1,a2;
+        int[][]Descendencia = new int [tampob][reinas];
         
     }
     
     public boolean resuelto(){
         return resuelto;
+    }
+    
+    public float random0y1(Random r){
+        float random = r.nextFloat();
+        return random;
     }
 }
