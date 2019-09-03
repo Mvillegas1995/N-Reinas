@@ -168,9 +168,10 @@ public class GeneticAlg {
         return pos;
     }
         
-    public void cruza(Random r){
+    public void cruza(Random r, float probCruza, int i){
         int[][]Descendencia = new int [tampob][reinas];
         int puntoCruza = r.nextInt(reinas-1);
+        float seCruza = r.nextFloat();
         int posTab1 = escogerTableroCruza(r);
         int posTab2 = escogerTableroCruza(r);
         //Para evitar reproducción entre el mismo individuo
@@ -180,7 +181,11 @@ public class GeneticAlg {
         int[] tablero1 = poblacion[posTab1];
         int[] tablero2 = poblacion[posTab2];
         //formula punto de cruza
-        
+        if(seCruza <= probCruza){
+            for (int j = 0; j < (reinas-puntoCruza); j++) {
+                
+            }
+        }
     }
 
     public boolean resuelto(){
