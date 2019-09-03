@@ -144,10 +144,9 @@ public class GeneticAlg {
         //}
     }
 
-    public int escogerTableroCruza(){
+    public int escogerTableroCruza(Random r){
 
         //Definimos un numero random 0 <= Aleatorio <= 1 para seleccionar mediante ruleta a un tablero
-        Random r = new Random();
         int pos = 0;
         float AleatorioUno = r.nextFloat();
         System.out.println("AleatorioUno: "+ AleatorioUno);
@@ -169,10 +168,62 @@ public class GeneticAlg {
         return pos;
     }
         
-    public void cruza(){
-        int a1,a2;
-        int[][]Descendencia = new int [tampob][reinas];
+    public void cruza(Random r){
+        
+        int PobUno, PobDos;
+        
+        
+        //Descendencia sera la nueva poblacion de 10 con las cruzas aplicadas
+        //poblacion[][] es la poblacion principal
+        
+        
+        int posAleatoria = r.nextInt(reinas);
+        
+        
+        
 
+    }
+    
+    public void mutacion(Random r ,float probMutacion){
+        
+        
+        int [] PoblacionUno = {0, 1, 2, 3, 4, 5, 6, 7};
+        int[] Descendencia = new int [reinas];
+        int aux;
+        float probElegida = r.nextFloat();
+        int AleatorioUno = r.nextInt(7);
+        int AleatorioDos = r.nextInt(7);
+        
+        while(AleatorioUno==AleatorioDos){   
+            AleatorioDos = r.nextInt(7);
+        }
+        System.out.println("Probabilidad : "+probElegida+" <= "+probMutacion);
+        if(probElegida <= probMutacion){
+            for (int i = 0; i < reinas; i++) {
+                Descendencia[i] = PoblacionUno[i];
+            }
+            System.out.println("Gen a mutar: "+AleatorioUno+" Por "+AleatorioDos);
+
+            //Se realiza la mutacion intercambiando al azar dos posiciones de descendencia
+
+            Descendencia[AleatorioUno] = PoblacionUno[AleatorioDos];
+            Descendencia[AleatorioDos] = PoblacionUno[AleatorioUno];
+
+            System.out.println("");
+            System.out.println("Original");
+            for (int i = 0; i < reinas; i++) {
+
+                System.out.print(" "+PoblacionUno[i]);
+            }
+            System.out.println("");
+            System.out.println("Mutado");
+            for (int i = 0; i < reinas; i++) {
+
+                System.out.print(" "+Descendencia[i]);
+            }
+        }
+        
+        
     }
 
     public boolean resuelto(){

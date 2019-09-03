@@ -8,7 +8,8 @@ public class NReinas {
 
         int tampob = 10;
         int reinas = 8;
-        int semilla = 2;
+        int semilla = 3;
+        float probMutacion = (float) 0.6;
         Random r = new Random(semilla);
 
         GeneticAlg x = new GeneticAlg(tampob, reinas);
@@ -23,11 +24,15 @@ public class NReinas {
         else x.generarRuleta();
 
         System.out.println("");
-        System.out.println("El tablero escogido para la cruza es: "+x.escogerTableroCruza());
-        System.out.println(x.random0y1(r));
-        System.out.println(x.random0y1(r));
-        System.out.println(x.random0y1(r));
-        System.out.println(x.random0y1(r));
+        System.out.println("El tablero escogido para la cruza es: "+x.escogerTableroCruza(r));
+       
+            
+        System.out.println("");
+        //System.out.println("El tablero escogido para la mutacion es: "+x.escogerTableroCruza(r));
+        
+        x.mutacion(r, probMutacion);
+        
+        
 
     }
 
