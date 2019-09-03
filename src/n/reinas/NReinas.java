@@ -9,7 +9,7 @@ public class NReinas {
         int tampob = 10;
         int reinas = 8;
         int semilla = 1;
-        int probCruza = 90;
+        float probCruza = (float)0.90;
         Random r = new Random(semilla);
 
         GeneticAlg x = new GeneticAlg(tampob, reinas);
@@ -25,6 +25,8 @@ public class NReinas {
 
         System.out.println("");
         System.out.println("El tablero escogido para la cruza es: "+x.escogerTableroCruza(r));
+        System.out.println("");
+        x.cruza(r, probCruza);
 
     }
 

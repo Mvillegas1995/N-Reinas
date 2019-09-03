@@ -149,7 +149,7 @@ public class GeneticAlg {
         //Definimos un numero random 0 <= Aleatorio <= 1 para seleccionar mediante ruleta a un tablero
         int pos = 0;
         float AleatorioUno = r.nextFloat();
-        System.out.println("AleatorioUno: "+ AleatorioUno);
+        System.out.println("El Lanzamiento de ruleta dio: "+ AleatorioUno);
         //Imprimir ruleta solo para verificación
         for (int i = 0; i < tampob; i++) {
             System.out.print(ruleta[i]+" ");
@@ -157,19 +157,19 @@ public class GeneticAlg {
 
         for (int i = 0; i < tampob; i++) {
             if(i != 0 && AleatorioUno > ruleta[i-1] && ruleta[i] > AleatorioUno){
-                System.out.println("Aleatorio uno esta en: "+i);
+                System.out.println("El tablero escogido es: "+i);
                 pos = i;
             }
             else if(i==0 && AleatorioUno > 0 && AleatorioUno < ruleta[i]){
-                System.out.println("Aleatorio uno esta en: "+i);
+                System.out.println("El tablero escogido es: "+i);
                 pos = i;            
             }
         }
         return pos;
     }
         
-    public void cruza(Random r, float probCruza, int i){
-        int[][]Descendencia = new int [tampob][reinas];
+    public void cruza(Random r, float probCruza){
+        int[]Descendencia = new int [reinas];
         int puntoCruza = r.nextInt(reinas-1);
         float seCruza = r.nextFloat();
         int posTab1 = escogerTableroCruza(r);
@@ -182,10 +182,75 @@ public class GeneticAlg {
         int[] tablero2 = poblacion[posTab2];
         //formula punto de cruza
         if(seCruza <= probCruza){
-            for (int j = 0; j < (reinas-puntoCruza); j++) {
-                
+            for (int j = 0; j <= puntoCruza; j++) {
+                Descendencia [j] = tablero1[j]; 
+            }
+            for (int k = puntoCruza+1; k < reinas; k++) {
+                Descendencia[k] = tablero2[k];
+            }
+            
+            System.out.println("");
+            System.out.println("Punto de Cruza: "+puntoCruza);
+            System.out.println("");
+            System.out.print("Tablero 1: ");
+            for (int l = 0; l < reinas; l++) {
+                System.out.print(tablero1[l]+" ");
+            }
+            System.out.println("");
+            System.out.print("Tablero 2: ");
+            for (int l = 0; l < reinas; l++) {
+                System.out.print(tablero2[l]+" ");
+            }
+            System.out.println("");
+            System.out.print("Descendencia: ");
+            for (int l = 0; l < reinas; l++) {
+                System.out.print(Descendencia[l]+" ");
+            }
+            //Corregir Tablero
+            int[] auxTabCorregido = new int[reinas];
+            for (int i = 0; i < reinas; i++) {
+                auxTabCorregido[i] = 0;
+            }
+            System.out.println("");
+            System.out.println("Auxiliar repeticiones");
+            for (int i = 0; i < reinas; i++) {
+                auxTabCorregido[Descendencia[i]]++; 
+            }
+            for (int i = 0; i < reinas; i++) {
+                System.out.print(auxTabCorregido[i]+" ");
+            }
+            for (int i = 0; i < reinas; i++) {
+                if(auxTabCorregido[i] == 2){
+                    for (int j = 0; j < reinas; j++) {
+                        if(auxTabCorregido[j] == 0){
+                            int k = 0;
+                            boolean salir = true;
+                            while(true){
+                                if (Descendencia[k] == i) {
+                                    Descendencia[k] = j;
+                                    salir = false;
+                                }
+                                k++;
+                            }                            
+                            auxTabCorregido[i]--;
+                            auxTabCorregido[j]++;
+                        }
+                    }
+                }
+            }
+            System.out.println("");
+            System.out.println("Auxiliar repeticiones corregido");
+            for (int i = 0; i < reinas; i++) {
+                System.out.print(auxTabCorregido[i]+" "); 
+            }
+            System.out.println("");
+            System.out.println("Tablero corregido");
+            for (int l = 0; l < reinas; l++) {
+                System.out.print(Descendencia[l]+" ");
             }
         }
+        
+        
     }
 
     public boolean resuelto(){
