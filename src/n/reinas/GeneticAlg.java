@@ -169,6 +169,7 @@ public class GeneticAlg {
     }
         
     public void cruza(Random r, float probCruza){
+        
         int[]Descendencia = new int [reinas];
         int puntoCruza = r.nextInt(reinas-1);
         float seCruza = r.nextFloat();
@@ -191,20 +192,25 @@ public class GeneticAlg {
             
             System.out.println("");
             System.out.println("Punto de Cruza: "+puntoCruza);
-            System.out.println("");
             System.out.print("Tablero 1: ");
             for (int l = 0; l < reinas; l++) {
+                
                 System.out.print(tablero1[l]+" ");
+                if(puntoCruza==l)System.out.print("| ");
             }
             System.out.println("");
             System.out.print("Tablero 2: ");
             for (int l = 0; l < reinas; l++) {
+                
                 System.out.print(tablero2[l]+" ");
+                if(puntoCruza==l)System.out.print("| ");
             }
             System.out.println("");
-            System.out.print("Descendencia: ");
+            System.out.print("Descendencia cruzada: ");
             for (int l = 0; l < reinas; l++) {
+                
                 System.out.print(Descendencia[l]+" ");
+                if(puntoCruza==l)System.out.print("| ");
             }
             //Corregir Tablero
             int[] auxTabCorregido = new int[reinas];
@@ -212,41 +218,62 @@ public class GeneticAlg {
                 auxTabCorregido[i] = 0;
             }
             System.out.println("");
-            System.out.println("Auxiliar repeticiones");
+            
             for (int i = 0; i < reinas; i++) {
                 auxTabCorregido[Descendencia[i]]++; 
             }
+            //System.out.print("Auxiliar repeticiones: ");
+            //for (int i = 0; i < reinas; i++) {
+            //    System.out.print(auxTabCorregido[i]+" ");
+            //}
+            //System.out.println("");
+            
+            //System.out.println("--------------Area de Trabajo--------------- ");
+            int count = 0;
             for (int i = 0; i < reinas; i++) {
-                System.out.print(auxTabCorregido[i]+" ");
-            }
-            for (int i = 0; i < reinas; i++) {
-                if(auxTabCorregido[i] == 2){
-                    for (int j = 0; j < reinas; j++) {
-                        if(auxTabCorregido[j] == 0){
-                            int k = 0;
-                            boolean salir = true;
-                            while(true){
-                                if (Descendencia[k] == i) {
-                                    Descendencia[k] = j;
-                                    salir = false;
-                                }
-                                k++;
-                            }                            
-                            auxTabCorregido[i]--;
-                            auxTabCorregido[j]++;
-                        }
-                    }
+                if(auxTabCorregido[i]==2){
+                    count++;
                 }
             }
-            System.out.println("");
-            System.out.println("Auxiliar repeticiones corregido");
-            for (int i = 0; i < reinas; i++) {
-                System.out.print(auxTabCorregido[i]+" "); 
+            //System.out.println("Count es igual a "+count);
+            int i=0,j=0,k=0;
+            while(count > 0 && i<8){
+            
+                if (auxTabCorregido[i]==2 && i<reinas) {
+                  
+                   //El numero i se repite dos veces
+                    if (Descendencia[j]==i && j<reinas) {
+                        
+                        //j iterara las descendencias
+                        //Busca el numero i en descendencia[j]
+                        if (auxTabCorregido[k]==0 && k<reinas) {
+                            //El numero en espacio k se repite 0 veces
+                            Descendencia[j]=k;
+                            auxTabCorregido[i]--;
+                            auxTabCorregido[k]++;        
+                            count--;
+                       
+                        }else{
+                            k++;
+                        }
+                    }else{
+                        j++;
+                    }                    
+                }else{
+                i++;
+                }            
             }
-            System.out.println("");
-            System.out.println("Tablero corregido");
-            for (int l = 0; l < reinas; l++) {
-                System.out.print(Descendencia[l]+" ");
+            //System.out.println(" ");
+            //System.out.println("------------Fin Area de Trabajo-------------- ");
+            //System.out.println("");
+            //System.out.print("Auxiliar repeticiones corregido: ");
+            //for (int p = 0; p < reinas; p++) {
+            //    System.out.print(auxTabCorregido[p]+" "); 
+            //}
+            //System.out.println("");
+            System.out.print("Tablero descendencia de cruza corregido: ");
+            for (int  a=0; a < reinas; a++) {
+                System.out.print(Descendencia[a]+" ");
             }
         }
         
