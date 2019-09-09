@@ -245,7 +245,7 @@ public class GeneticAlg {
             }
             //System.out.println("Count es igual a "+count);
             int i=0,j=0,k=0;
-            while(count > 0 && i<8){
+            while(count > 0 && i<reinas){
             
                 if (auxTabCorregido[i]==2 && i<reinas) {
                   

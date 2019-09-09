@@ -8,11 +8,10 @@ public class NReinas {
 
         int tampob = 10;
         int reinas = 8;
-        int semilla = 5;
+        int semilla = 4;
         float probCruza = (float)0.90;
         float probMutacion = (float)0.05;
         Random r = new Random(semilla);
-
         GeneticAlg x = new GeneticAlg(tampob, reinas);       
         
         
