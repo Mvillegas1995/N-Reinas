@@ -8,7 +8,7 @@ public class NReinas {
 
         int tampob = 10;
         int reinas = 8;
-        int semilla = 4;
+        int semilla = 1;
         float probCruza = (float)0.90;
         float probMutacion = (float)0.05;
         Random r = new Random(semilla);
@@ -32,7 +32,7 @@ public class NReinas {
             int pobLlena = 0;
             //Elitismo
             //y.ingresarCruza(0, x.elitismo());
-            while(pobLlena != tampob){
+            while(pobLlena < tampob){
                 cruza = x.cruza(r, probCruza, probMutacion);
                 if(cruza != null){
                     
