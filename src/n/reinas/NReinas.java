@@ -8,8 +8,14 @@ public class NReinas {
 
         int tampob = 10;
         int reinas = 8;
+<<<<<<< Updated upstream
         int semilla = 3;
         float probMutacion = (float) 0.6;
+=======
+        int semilla =  9;
+        float probCruza = (float)0.90;
+        float probMutacion = (float)0.05;
+>>>>>>> Stashed changes
         Random r = new Random(semilla);
 
         GeneticAlg x = new GeneticAlg(tampob, reinas);
@@ -27,6 +33,7 @@ public class NReinas {
         System.out.println("El tablero escogido para la cruza es: "+x.escogerTableroCruza(r));
        
             
+<<<<<<< Updated upstream
         System.out.println("");
         //System.out.println("El tablero escogido para la mutacion es: "+x.escogerTableroCruza(r));
         
@@ -34,6 +41,12 @@ public class NReinas {
         
         
 
+=======
+        }while(!x.resuelto());
+        System.out.println("Tablero Solución: ");
+        System.out.println(" ");
+        x.imprimirTablero(x.solucion());
+>>>>>>> Stashed changes
     }
 
 }

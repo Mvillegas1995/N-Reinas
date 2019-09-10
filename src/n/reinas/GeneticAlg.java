@@ -215,6 +215,7 @@ public class GeneticAlg {
 
                 System.out.print(" "+PoblacionUno[i]);
             }
+<<<<<<< Updated upstream
             System.out.println("");
             System.out.println("Mutado");
             for (int i = 0; i < reinas; i++) {
@@ -224,6 +225,78 @@ public class GeneticAlg {
         }
         
         
+=======
+            int j = 0;
+            while(true){
+                //Guardo el número que no está en la posición del número repetido
+                if(Descendencia[j] == pos2){
+                    Descendencia[j] = pos0;
+                    auxTabCorregido[pos2]--;
+                    auxTabCorregido[pos0]++;
+                    count--;
+                    break;
+                }
+                j++;
+            }        
+        }          
+        
+       
+        //Mutación
+        /*System.out.println("");
+        System.out.print("Descendencia sin mutacion: ");
+        for (int i = 0; i < reinas; i++) {
+                System.out.print(Descendencia[i]+" ");
+                
+        }
+        */
+        float probElegida = r.nextFloat();
+        if(probElegida <= probMutacion){
+            Descendencia = mutacion(r,Descendencia);
+        }
+        return Descendencia;
+    }
+
+      public int[] mutacion(Random r , int[] Descendencia){
+        
+        int[] DescendenciaMutada = Descendencia;               
+        //Se escoge las posiciones a mutar
+        int AleatorioUno = r.nextInt(reinas);
+        int AleatorioDos = r.nextInt(reinas);
+        //Para que no se repitan los números escogidos
+        while(AleatorioUno == AleatorioDos){   
+            AleatorioDos = r.nextInt(reinas);
+        }
+        int CambioUno = Descendencia[AleatorioDos];
+        int CambioDos = Descendencia[AleatorioUno];
+        /*
+        System.out.println("");
+        System.out.println("Numeros a mutar: "+CambioUno+" y "+CambioDos);
+        System.out.println("Posiciones a mutar: "+AleatorioUno+" y "+AleatorioDos);
+        
+        System.out.print("Descendencia sin mutacion: ");
+        for (int i = 0; i < reinas; i++) {
+                System.out.print(DescendenciaMutada[i]+" ");
+                
+        }
+        */
+        //System.out.println("Se mutara :");
+        //(System.out.println("Descendencia[AleatorioDos]="+Descendencia[AleatorioDos]+" por Descendencia[AleatorioUno]="+Descendencia[AleatorioUno]);
+        //Hace la mutación
+        //System.out.println("");
+        DescendenciaMutada[AleatorioUno] = CambioUno;
+        DescendenciaMutada[AleatorioDos] = CambioDos;
+        /*
+        System.out.println("");
+        System.out.print("Descendencia Con mutacion: ");
+        for (int i = 0; i < reinas; i++) {
+                System.out.print(DescendenciaMutada[i]+" ");
+                
+        }
+        System.out.println("");
+        System.out.print("-----------------");
+        */
+        return DescendenciaMutada;       
+>>>>>>> Stashed changes
     }
 
     public boolean resuelto(){
