@@ -9,6 +9,7 @@ public class NReinas {
         int tampob = 8;
         int reinas = 5;
         int semilla = 3;
+        int iteracionesMax = 10;
         float probCruza = (float)0.90;
         float probMutacion = (float)0.05;
         Random r = new Random(semilla);
@@ -44,8 +45,11 @@ public class NReinas {
             iteracion++;
             System.out.println("");
             x.imprimirPoblacion();
-            
-        }while(!x.resuelto());
+
+        }while(!x.resuelto() && iteracion < iteracionesMax);
+      
+        
+        //La solucion debe imprimir, tablero solucion, iteracion, valor de fitness        
         System.out.println("Tablero Solución: ");
         x.imprimirTablero(x.solucion());
     }
