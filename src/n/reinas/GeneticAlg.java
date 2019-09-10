@@ -26,10 +26,12 @@ public class GeneticAlg {
 
         this.tampob = tampob;
         this.reinas = reinas;
-        peorFitness = 0;
         mejorFitness = 0;
         resuelto = false;
-
+        peorFitness = 0;
+        for (int i = reinas-1; i > 0; i--) {
+            peorFitness += i ;
+        }
         poblacion = new int [tampob][reinas];
         for (int i = 0; i < tampob; i++) {
             for (int j = 0; j < reinas; j++) {
@@ -85,9 +87,7 @@ public class GeneticAlg {
                         fitness[k]++;
                 }
             }
-            // Guardo las posiciones de los tableros con peor y mejor fitness
-            if(fitness[k] > fitness[peorFitness])
-                peorFitness = k;
+            // Guardo la posición con mejor fitness
             if(fitness[k] < fitness[mejorFitness])
                 mejorFitness = k;
         }
@@ -100,12 +100,11 @@ public class GeneticAlg {
         }
         //imprimirFitness();
         // Aquí recalculo el fitness para que mientras mejor(más pequeño) tenga más probabilidad
-        // Se hace la sustracción del peorFitness(con más choques) con todos los fitness de modo de que
+        // Se hace la sustracción del peorFitness posible con todos los fitness de modo de que
         // ¿se de vuelta la tortilla?
         if(!resuelto){
-            int aux = fitness[peorFitness];
             for (int i = 0; i < tampob; i++) {
-                fitness[i] = aux - fitness[i];
+                fitness[i] = peorFitness - fitness[i];
             }
         }
     }
@@ -117,7 +116,6 @@ public class GeneticAlg {
         }
         //Borrar o comentar luego
         System.out.println("");
-        System.out.println("Tablero con mejor fitness: "+mejorFitness);
         System.out.println("Tablero con peor fitness: "+peorFitness);
     }
 
@@ -170,170 +168,94 @@ public class GeneticAlg {
         return pos;
     }
         
-    public int[] cruza(Random r, float probCruza, float probMutacion){
+    public int[] cruza(Random r, float probMutacion){
         
-        int[]Descendencia = null;
-        float seCruza = r.nextFloat();
-        /*System.out.println("");
-        System.out.println(seCruza);
-        */
-        if(seCruza <= probCruza){        
-            Descendencia = new int [reinas];
-            int puntoCruza = r.nextInt(reinas-1);       
-            int posTab1 = escogerTableroCruza(r);
-            int posTab2 = escogerTableroCruza(r);
-            //Para evitar reproducción entre el mismo individuo
-            while(posTab1 == posTab2){
-                posTab2 = escogerTableroCruza(r);
-            }
-            int[] tablero1 = poblacion[posTab1];
-            int[] tablero2 = poblacion[posTab2];
-            //formula punto de cruza
-        
-            for (int j = 0; j <= puntoCruza; j++) {
-                Descendencia [j] = tablero1[j]; 
-            }
-            for (int k = puntoCruza+1; k < reinas; k++) {
-                Descendencia[k] = tablero2[k];
-            }
-            
-            /*System.out.println("");
-            System.out.println("Punto de Cruza: "+puntoCruza);
-            System.out.print("Tablero 1: ");
-            for (int l = 0; l < reinas; l++) {
-                
-                System.out.print(tablero1[l]+" ");
-                if(puntoCruza==l)System.out.print("| ");
-            }
-            System.out.println("");
-            System.out.print("Tablero 2: ");
-            for (int l = 0; l < reinas; l++) {
-                
-                System.out.print(tablero2[l]+" ");
-                if(puntoCruza==l)System.out.print("| ");
-            }
-            System.out.println("");
-            System.out.print("Descendencia cruzada: ");
-            for (int l = 0; l < reinas; l++) {
-                
-                System.out.print(Descendencia[l]+" ");
-                if(puntoCruza==l)System.out.print("| ");
-            }
-            */
-            //Corregir Tablero
-            int[] auxTabCorregido = new int[reinas];
-            for (int i = 0; i < reinas; i++) {
-                auxTabCorregido[i] = 0;
-            }
-            //System.out.println("");
-            
-            for (int i = 0; i < reinas; i++) {
-                auxTabCorregido[Descendencia[i]]++; 
-            }
-            //System.out.print("Auxiliar repeticiones: ");
-            //for (int i = 0; i < reinas; i++) {
-            //    System.out.print(auxTabCorregido[i]+" ");
-            //}
-            //System.out.println("");
-            
-            //System.out.println("--------------Area de Trabajo--------------- ");
-            int count = 0;
-            for (int i = 0; i < reinas; i++) {
-                if(auxTabCorregido[i]==2){
-                    count++;
-                }
-            }
-            //System.out.println("Count es igual a "+count);
-            int i=0,j=0,k=0;
-            while(count > 0 && i<reinas){
-            
-                if (auxTabCorregido[i]==2 && i<reinas) {
-                  
-                   //El numero i se repite dos veces
-                    if (Descendencia[j]==i && j<reinas) {
-                        
-                        //j iterara las descendencias
-                        //Busca el numero i en descendencia[j]
-                        if (auxTabCorregido[k]==0 && k<reinas) {
-                            //El numero en espacio k se repite 0 veces
-                            Descendencia[j]=k;
-                            auxTabCorregido[i]--;
-                            auxTabCorregido[k]++;        
-                            count--;
-                       
-                        }else{
-                            k++;
-                        }
-                    }else{
-                        j++;
-                    }                    
-                }else{
-                i++;
-                }            
-            }
-            //System.out.println(" ");
-            //System.out.println("------------Fin Area de Trabajo-------------- ");
-            //System.out.println("");
-            //System.out.print("Auxiliar repeticiones corregido: ");
-            //for (int p = 0; p < reinas; p++) {
-            //    System.out.print(auxTabCorregido[p]+" "); 
-            //}
-            //System.out.println("");
-            /*System.out.print("Tablero descendencia de cruza corregido: ");
-            for (int  a=0; a < reinas; a++) {
-                System.out.print(Descendencia[a]+" ");
-            }*/
-            int [] auxMut = mutacion(r,probMutacion,Descendencia);
-            if( auxMut != null){
-                Descendencia = auxMut;
+        int[]Descendencia = new int [reinas];
+        int puntoCruza = r.nextInt(reinas-1);       
+        int posTab1 = escogerTableroCruza(r);
+        int posTab2 = escogerTableroCruza(r);           
+        //Para evitar reproducción entre el mismo individuo
+        while(posTab1 == posTab2){
+            posTab2 = escogerTableroCruza(r);
+        }
+        int[] tablero1 = poblacion[posTab1];
+        int[] tablero2 = poblacion[posTab2];
+        //Cruzando
+        for (int j = 0; j <= puntoCruza; j++) {
+            Descendencia [j] = tablero1[j]; 
+        }
+        for (int k = puntoCruza+1; k < reinas; k++) {
+            Descendencia[k] = tablero2[k];
+        }           
+        //Corregir Tablero
+        //Se necesita de un auxiliar para saber cuantas números se repiten
+        int[] auxTabCorregido = new int[reinas];
+        for (int i = 0; i < reinas; i++) {
+            auxTabCorregido[i] = 0;
+        }
+        for (int i = 0; i < reinas; i++) {
+            auxTabCorregido[Descendencia[i]]++; 
+        }
+        //Para efectuar las correciones se necesita saber cuantos números repetidos hay
+        //se guardará el la variable count.
+        int count = 0;
+        for (int i = 0; i < reinas; i++) {
+            if(auxTabCorregido[i] == 2){
+                count++;
             }
         }
-        /*System.out.println("");
-        for (int  a=0; a < reinas; a++) {
-                System.out.print(Descendencia[a]+" ");
-            }*/
+        //Comienza la corrección, Pos2 = Número repetido, pos0 = Posición de número que no está
+        int pos2 = Integer.MAX_VALUE; 
+        int pos0 = Integer.MAX_VALUE;
+        while(count != 0){
+            for (int i = 0; i < reinas; i++) {
+                //Guardo el número repetido
+                if(auxTabCorregido[i] == 2)
+                    pos2 = i;
+            }
+            for (int i = 0; i < reinas; i++) {
+                //Guardo el número que no está en el tablero
+                if(auxTabCorregido[i] == 0)
+                    pos0 = i;
+            }
+            int j = 0;
+            while(true){
+                //Guardo el número que no está en la posición del número repetido
+                if(Descendencia[j] == pos2){
+                    Descendencia[j] = pos0;
+                    auxTabCorregido[pos2]--;
+                    auxTabCorregido[pos0]++;
+                    count--;
+                    break;
+                }
+                j++;
+            }        
+        }          
+        //Mutación
+        float probElegida = r.nextFloat();
+        if(probElegida <= probMutacion){
+            Descendencia = mutacion(r,probMutacion,Descendencia);
+        }
         return Descendencia;
     }
 
-    public int[] mutacion(Random r ,float probMutacion, int[] PoblacionUno){
+    public int[] mutacion(Random r ,float probMutacion, int[] Descendencia){
                
-        int[] Descendencia = null;               
-        float probElegida = r.nextFloat();
-        int AleatorioUno = r.nextInt(7);
-        int AleatorioDos = r.nextInt(7);
-        
+        int[] DescendenciaMutada = Descendencia;               
+        //Se escoge las posiciones a mutar
+        int AleatorioUno = r.nextInt(reinas);
+        int AleatorioDos = r.nextInt(reinas);
+        //Para que no se repitan los números escogidos
         while(AleatorioUno == AleatorioDos){   
-            AleatorioDos = r.nextInt(7);
+            AleatorioDos = r.nextInt(reinas);
         }
-       // System.out.println("Probabilidad : "+probElegida+" <= "+probMutacion);
-        if(probElegida <= probMutacion){
-            Descendencia = new int [reinas];
-            for (int i = 0; i < reinas; i++) {
-                Descendencia[i] = PoblacionUno[i];
-            }
-            //System.out.println("Gen a mutar: "+AleatorioUno+" Por "+AleatorioDos);
-
-            //Se realiza la mutacion intercambiando al azar dos posiciones de descendencia
-
-            Descendencia[AleatorioUno] = PoblacionUno[AleatorioDos];
-            Descendencia[AleatorioDos] = PoblacionUno[AleatorioUno];
-
-/*            System.out.println("");
-            System.out.println("Original");
-            for (int i = 0; i < reinas; i++) {
-
-                System.out.print(" "+PoblacionUno[i]);
-            }
-            System.out.println("");
-            System.out.println("Mutado");
-            for (int i = 0; i < reinas; i++) {
-
-                System.out.print(" "+Descendencia[i]);
-            }*/
-        }
+        //Hace la mutación
+        DescendenciaMutada[AleatorioUno] = Descendencia[AleatorioDos];
+        DescendenciaMutada[AleatorioDos] = Descendencia[AleatorioUno];
         
-        return Descendencia;       
+        return DescendenciaMutada;       
     }
+    
     public boolean resuelto(){
         return resuelto;
     }
