@@ -7,8 +7,8 @@ public class NReinas {
     public static void main(String[] args) {
 
         int tampob = 8;
-        int reinas = 8;
-        int semilla = 2;
+        int reinas = 5;
+        int semilla = 3;
         float probCruza = (float)0.90;
         float probMutacion = (float)0.05;
         Random r = new Random(semilla);

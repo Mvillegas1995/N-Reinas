@@ -234,13 +234,13 @@ public class GeneticAlg {
         //Mutación
         float probElegida = r.nextFloat();
         if(probElegida <= probMutacion){
-            Descendencia = mutacion(r,probMutacion,Descendencia);
+            Descendencia = mutacion(r,Descendencia);
         }
         return Descendencia;
     }
 
-    public int[] mutacion(Random r ,float probMutacion, int[] Descendencia){
-               
+          public int[] mutacion(Random r , int[] Descendencia){
+        
         int[] DescendenciaMutada = Descendencia;               
         //Se escoge las posiciones a mutar
         int AleatorioUno = r.nextInt(reinas);
@@ -249,12 +249,16 @@ public class GeneticAlg {
         while(AleatorioUno == AleatorioDos){   
             AleatorioDos = r.nextInt(reinas);
         }
-        //Hace la mutación
-        DescendenciaMutada[AleatorioUno] = Descendencia[AleatorioDos];
-        DescendenciaMutada[AleatorioDos] = Descendencia[AleatorioUno];
-        
+        int CambioUno = Descendencia[AleatorioDos];
+        int CambioDos = Descendencia[AleatorioUno];
+       
+        DescendenciaMutada[AleatorioUno] = CambioUno;
+        DescendenciaMutada[AleatorioDos] = CambioDos;
+  
         return DescendenciaMutada;       
+
     }
+
     
     public boolean resuelto(){
         return resuelto;
