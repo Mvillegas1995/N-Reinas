@@ -4,13 +4,20 @@ import java.util.Random;
 public class NReinas {
 
     public static void main(String[] args) {
+            int tampob;
+            int reinas;
+            int semilla;
+            int iteracionesMax; 
+            float probCruza;
+            float probMutacion;
+        
         if(args.length == 0){
-            int tampob = 15;
-            int reinas =  10;
-            int semilla = 1;
-            int iteracionesMax = 30000; 
-            float probCruza =  (float)0.9;
-            float probMutacion = (float)0.2;
+            tampob = 15;
+            reinas =  10;
+            semilla = 1;
+            iteracionesMax = 30000; 
+            probCruza =  (float)0.9;
+            probMutacion = (float)0.2;
         }
         //Me aseguro que se entran 6 argumentos
         if(args.length != 6){
@@ -35,12 +42,12 @@ public class NReinas {
                 }
             }
             
-            int tampob = Integer.parseInt(args[0]);
-            int reinas = Integer.parseInt(args[1]);
-            int semilla = Integer.parseInt(args[2]);
-            int iteracionesMax = Integer.parseInt(args[3]); 
-            float probCruza = Float.parseFloat(args[4]);
-            float probMutacion = Float.parseFloat(args[5]);
+            tampob = Integer.parseInt(args[0]);
+            reinas = Integer.parseInt(args[1]);
+            semilla = Integer.parseInt(args[2]);
+            iteracionesMax = Integer.parseInt(args[3]); 
+            probCruza = Float.parseFloat(args[4]);
+            probMutacion = Float.parseFloat(args[5]);
             
             if(probCruza<0 || probCruza>1){
                 System.out.println("La probabilidad de cruza debe estar entre 0 y 1");
