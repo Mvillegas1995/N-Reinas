@@ -17,7 +17,7 @@ Colocar N reinas en un tablero de ajedrez de NxN atendiendo que ninguna reina at
 > java NReinas TamañoPoblacion CantReinas Semilla IteracionesMax ProbCruza ProbMutacion
 
 - TamañoPoblacion: entero positivo  
-- Cant Reina: entero positivo  
+- CantReinas: entero positivo  
 - Semilla: entero positivo  
 - IteracionesMax: entero positivo  
 - ProbCruza: valor flotante entre 0 y 1 **(usar . entremedio , ej: 0.9)**
@@ -33,7 +33,7 @@ Colocar N reinas en un tablero de ajedrez de NxN atendiendo que ninguna reina at
 
 
 - TamañoPoblacion: 15
-- Cant Reina: 10  
+- CantReinas: 10  
 - Semilla: 1  
 - IteracionesMax: 30000  
 - ProbCruza: 0.9
