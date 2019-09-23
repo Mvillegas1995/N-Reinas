@@ -21,8 +21,16 @@ public class NReinas {
             char c;
             for (int i = 0; i < args[4].length(); i++) {
                 c = args[4].charAt(i);
-                if(c == ","){
+                if(c == ','){
                     System.out.println("Ingrese el valor de la prob de cruza con . no con ,");
+                    System.exit(0);
+                }
+            }
+            char d;
+            for (int i = 0; i < args[5].length(); i++) {
+                d = args[5].charAt(i);
+                if(d == ','){
+                    System.out.println("Ingrese el valor de la prob de mutación con . no con ,");
                     System.exit(0);
                 }
             }
@@ -33,6 +41,15 @@ public class NReinas {
             int iteracionesMax = Integer.parseInt(args[3]); 
             float probCruza = Float.parseFloat(args[4]);
             float probMutacion = Float.parseFloat(args[5]);
+            
+            if(probCruza<0 || probCruza>1){
+                System.out.println("La probabilidad de cruza debe estar entre 0 y 1");
+                System.exit(0);
+            }
+            if(probMutacion<0 || probMutacion>1){
+                System.out.println("La probabilidad de mutación debe estar entre 0 y 1");
+                System.exit(0);
+            }
         }
         
         
