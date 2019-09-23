@@ -1,28 +1,40 @@
-package n.reinas;
 
 import java.util.Random;
 
 public class NReinas {
 
     public static void main(String[] args) {
+        if(args.length == 0){
+            int tampob = 15;
+            int reinas =  10;
+            int semilla = 1;
+            int iteracionesMax = 30000; 
+            float probCruza =  (float)0.9;
+            float probMutacion = (float)0.2;
+        }
         //Me aseguro que se entran 6 argumentos
         if(args.length != 6){
-            System.out.println("Faltan argumentos o puso demasiados al momento de ingresar");
+            System.out.println("\nFaltan argumentos o puso demasiados al momento de ingresar\n");
             System.exit(0);
         }
-        int tampob = Integer.parseInt(args[0]);
-        int reinas = Integer.parseInt(args[1]);
-        int semilla = Integer.parseInt(args[2]);
-        int iteracionesMax = Integer.parseInt(args[3]); 
-        float probCruza = Float.parseFloat(args[4]);
-        float probMutacion = Float.parseFloat(args[5]);
+        else{
+            char c;
+            for (int i = 0; i < args[4].length(); i++) {
+                c = args[4].charAt(i);
+                if(c == ","){
+                    System.out.println("Ingrese el valor de la prob de cruza con . no con ,");
+                    System.exit(0);
+                }
+            }
+            
+            int tampob = Integer.parseInt(args[0]);
+            int reinas = Integer.parseInt(args[1]);
+            int semilla = Integer.parseInt(args[2]);
+            int iteracionesMax = Integer.parseInt(args[3]); 
+            float probCruza = Float.parseFloat(args[4]);
+            float probMutacion = Float.parseFloat(args[5]);
+        }
         
-        /*int tampob = 15;
-        int reinas =  15;
-        int semilla = 1;
-        int iteracionesMax = 30000; 
-        float probCruza =  (float)0.90;
-        float probMutacion = (float)0.2;*/
         
         Random r = new Random(semilla);
         GeneticAlg x = new GeneticAlg(tampob, reinas);              
@@ -40,7 +52,7 @@ public class NReinas {
             System.out.println("Generación: "+iteracion);
             
             GeneticAlg y = new GeneticAlg(tampob, reinas);
-            int[] cruza;
+         
             int pobLlena = 0;
             //Elitismo
             //y.ingresarCruza(0, x.elitismo());
