@@ -20,6 +20,7 @@ public class GeneticAlg {
     // Para comprobar si encuentro un tablero con la solución
     private boolean resuelto;
     private int tableroSolucion;
+    private int fitnessNoSolucion;
     private float[] ruleta;
 
     public GeneticAlg(int tampob, int reinas){
@@ -88,8 +89,10 @@ public class GeneticAlg {
                 }
             }
             // Guardo la posición con mejor fitness
-            if(fitness[k] < fitness[mejorFitness])
+            if(fitness[k] < fitness[mejorFitness]){
                 mejorFitness = k;
+                fitnessNoSolucion = fitness[k];
+            }
         }
         //Comprobar si encontre la solución
         for (int i = 0; i < tampob; i++) {
@@ -239,7 +242,7 @@ public class GeneticAlg {
         return Descendencia;
     }
 
-          public int[] mutacion(Random r , int[] Descendencia){
+    public int[] mutacion(Random r , int[] Descendencia){
         
         int[] DescendenciaMutada = Descendencia;               
         //Se escoge las posiciones a mutar
@@ -258,7 +261,6 @@ public class GeneticAlg {
         return DescendenciaMutada;       
 
     }
-
     
     public boolean resuelto(){
         return resuelto;
@@ -278,8 +280,18 @@ public class GeneticAlg {
         }
     }
     
-    public int solucion(){
+    public int solucion(int iteracion){
+        System.out.println("La solución se encontro en la iteración: "+iteracion);
+        System.out.println("El tablero que se encontró tiene : "+fitnessNoSolucion+" choques(fitness)");
+        System.out.print("El tablero con la solución es: ");
         return tableroSolucion;
+    }
+    
+    public int solucionNoEncontrada(int iteracionesMax){
+        System.out.println("No se encontro la solución en las "+iteracionesMax+" iteraciones dadas");
+        System.out.println("El mejor tablero que se encontró tiene : "+fitnessNoSolucion+" choques(fitness)");
+        System.out.print("El mejor tablero encontrado es: ");
+        return mejorFitness;
     }
 
 }
