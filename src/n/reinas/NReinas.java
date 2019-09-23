@@ -4,21 +4,14 @@ import java.util.Random;
 public class NReinas {
 
     public static void main(String[] args) {
-            int tampob;
-            int reinas;
-            int semilla;
-            int iteracionesMax; 
-            float probCruza;
-            float probMutacion;
+
+        int tampob = 15;
+        int reinas =  10;
+        int semilla = 1;
+        int iteracionesMax = 30000; 
+        float probCruza =  (float)0.9;
+        float probMutacion = (float)0.2;
         
-        if(args.length == 0){
-            tampob = 15;
-            reinas =  10;
-            semilla = 1;
-            iteracionesMax = 30000; 
-            probCruza =  (float)0.9;
-            probMutacion = (float)0.2;
-        }
         //Me aseguro que se entran 6 argumentos
         if(args.length != 6){
             System.out.println("\nFaltan argumentos o puso demasiados al momento de ingresar\n");
