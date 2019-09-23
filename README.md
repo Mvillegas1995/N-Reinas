@@ -2,6 +2,10 @@
 
 Colocar N reinas en un tablero de ajedrez de NxN atendiendo que ninguna reina ataque a otra siguiendo las reglas del ajedrez. Heurística posible: Mínimo de conflictos. El backtracking debe realizar verificación anticipada de restricciones.
 
+# Informacion
+
+Proyecto realizado en netbeans ide 8.2 modificado para ser usado en Lubuntu, para poder ser compilado en netbeans debe anteponerse en los archivos NReinas.java y GeneticAlg.java el siguiente package: package n.reinas; 
+
 # Descargar 
 
 > git clone https://github.com/Mvillegas1995/N-Reinas.git
@@ -37,6 +41,12 @@ Colocar N reinas en un tablero de ajedrez de NxN atendiendo que ninguna reina at
 - Semilla: 1  
 - IteracionesMax: 30000  
 - ProbCruza: 0.9
+
+# Integrantes
+
+- Marcus Villegas
+- Julio Cáceres
+
 - ProbMutacion: 0.2  
 
  
