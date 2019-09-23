@@ -12,6 +12,8 @@ Colocar N reinas en un tablero de ajedrez de NxN atendiendo que ninguna reina at
 
 # Ejecucion
 
+**Para realizar la ejecucion del programa debe dirigirse a la carpeta:  /NReinas/src/n/reinas**  
+
 > java NReinas TamañoPoblacion CantReinas Semilla IteracionesMax ProbCruza ProbMutacion
 
 - TamañoPoblacion: entero positivo  
