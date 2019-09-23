@@ -4,15 +4,15 @@ Colocar N reinas en un tablero de ajedrez de NxN atendiendo que ninguna reina at
 
 # Descargar 
 
-git clone https://github.com/Mvillegas1995/N-Reinas.git
+> git clone https://github.com/Mvillegas1995/N-Reinas.git
 
 # Compilacion
 
-javac NReinas.java
+> javac NReinas.java
 
 # Ejecucion
 
-java NReinas TamañoPoblacion CantReinas Semilla IteracionesMax ProbCruza ProbMutacion
+> java NReinas TamañoPoblacion CantReinas Semilla IteracionesMax ProbCruza ProbMutacion
 
 TamañoPoblacion: entero positivo  
 Cant Reina: entero positivo  
@@ -24,7 +24,7 @@ ProbMutacion: valor flotante entre 0 y 1 (usar . entremedio.., ej: 0.2)
 
 # Ejemplo
 
-java NReinas 10 10 1 20000 0.9 0.2
+> java NReinas 10 10 1 20000 0.9 0.2
 
 
  
