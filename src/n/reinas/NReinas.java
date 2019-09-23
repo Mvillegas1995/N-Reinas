@@ -1,7 +1,3 @@
-package n.reinas;
-
-
-import java.util.Random;
 
 public class NReinas {
 
@@ -53,6 +49,14 @@ public class NReinas {
                 System.out.println("La probabilidad de mutación debe estar entre 0 y 1");
                 System.exit(0);
             }
+            if(tampob<=1){
+                System.out.println("Ingrese una población mayor a 1");
+                System.exit(0);
+            }
+            if(reinas<=1){
+                System.out.println("Ingrese más de una reina");
+                System.exit(0);
+            }
         }
         
         
@@ -68,7 +72,6 @@ public class NReinas {
         int iteracion = 1;
         // si no se llego a la solucion inicialmente se procede a aplicar cruza/mutacion para intentar llegar al optimo
         do{
-            System.out.println("");
             System.out.println("Generación: "+iteracion);
             
             GeneticAlg y = new GeneticAlg(tampob, reinas);
@@ -100,6 +103,7 @@ public class NReinas {
         else{
             x.imprimirTablero(x.solucionNoEncontrada(iteracionesMax));
         }
+        System.out.println("");
     }
 
 }
