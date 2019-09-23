@@ -1,4 +1,4 @@
-
+import java.util.Random;
 public class NReinas {
 
     public static void main(String[] args) {
