@@ -27,4 +27,14 @@ Colocar N reinas en un tablero de ajedrez de NxN atendiendo que ninguna reina at
 > java NReinas 10 10 1 20000 0.9 0.2
 
 
+**Si no se ingresan parametros, se procedera a ejecutar el programa con los siguientes valores por defecto**
+
+
+- TamañoPoblacion: 15
+- Cant Reina: 10  
+- Semilla: 1  
+- IteracionesMax: 30000  
+- ProbCruza: 0.9
+- ProbMutacion: 0.2  
+
  
