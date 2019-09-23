@@ -1,3 +1,5 @@
+package n.reinas;
+
 
 import java.util.Random;
 
@@ -13,7 +15,8 @@ public class NReinas {
         float probMutacion = (float)0.2;
         
         //Me aseguro que se entran 6 argumentos
-        if(args.length != 6 && args.length != 0){
+        if(args.length == 0);            
+        else if(args.length != 6){
             System.out.println("\nFaltan argumentos o puso demasiados al momento de ingresar\n");
             System.exit(0);
         }
