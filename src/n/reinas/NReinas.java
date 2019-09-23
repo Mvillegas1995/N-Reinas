@@ -90,8 +90,8 @@ public class NReinas {
             x.calcularFitness();
             x.generarRuleta();
             iteracion++;
-            System.out.println("");
-            x.imprimirPoblacion();
+            //System.out.println("");
+            //x.imprimirPoblacion();
 
         }while(!x.resuelto() && iteracion < iteracionesMax);
         
