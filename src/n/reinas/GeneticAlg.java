@@ -1,3 +1,5 @@
+package n.reinas;
+
 import java.util.Random;
 
 public class GeneticAlg {
@@ -27,6 +29,7 @@ public class GeneticAlg {
         mejorFitness = 0;
         resuelto = false;
         peorFitness = 0;
+        fitnessNoSolucion = 0;
         for (int i = reinas-1; i > 0; i--) {
             peorFitness += i ;
         }
@@ -50,7 +53,9 @@ public class GeneticAlg {
         peorFitness = 0;
         mejorFitness = 0;
         resuelto = false;
+        fitnessNoSolucion = Integer.MAX_VALUE;
         this.poblacion = Descendencia;
+        
     }
 
     public void desordenarTablero(Random r){
@@ -85,6 +90,8 @@ public class GeneticAlg {
                         fitness[k]++;
                 }
             }
+            if(k == 0)
+                fitnessNoSolucion = fitness[k];
             // Guardo la posición con mejor fitness
             if(fitness[k] < fitness[mejorFitness]){
                 mejorFitness = k;
@@ -105,6 +112,8 @@ public class GeneticAlg {
         if(!resuelto){
             for (int i = 0; i < tampob; i++) {
                 fitness[i] = peorFitness - fitness[i];
+                if(fitness[i]==0)
+                    fitness[i]++;
             }
         }
     }
@@ -285,7 +294,7 @@ public class GeneticAlg {
     }
     
     public int solucionNoEncontrada(int iteracionesMax){
-        System.out.println("No se encontro la solución en las "+iteracionesMax+" iteraciones dadas");
+        System.out.println("La solución encontrada en las "+iteracionesMax+" iteraciones es:");
         System.out.println("El mejor tablero que se encontró tiene : "+fitnessNoSolucion+" choques(fitness)");
         System.out.print("El mejor tablero encontrado es: ");
         return mejorFitness;

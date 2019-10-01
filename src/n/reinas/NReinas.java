@@ -1,3 +1,5 @@
+package n.reinas;
+
 import java.util.Random;
 public class NReinas {
 
