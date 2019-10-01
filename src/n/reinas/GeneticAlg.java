@@ -1,4 +1,3 @@
-package n.reinas;
 
 import java.util.Random;
 
