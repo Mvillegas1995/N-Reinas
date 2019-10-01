@@ -41,12 +41,9 @@ Proyecto realizado en netbeans ide 8.2 modificado para ser usado en Lubuntu, par
 - Semilla: 1  
 - IteracionesMax: 30000  
 - ProbCruza: 0.9
+- ProbMutacion: 0.2  
 
 # Integrantes
 
 - Marcus Villegas
 - Julio Cáceres
-
-- ProbMutacion: 0.2  
-
- 
